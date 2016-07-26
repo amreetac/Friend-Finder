@@ -1,18 +1,14 @@
-
 /*
-
 Your html-routes.js file should include two routes:
-
 A GET Route to /survey which should display the survey page.
 A default USE route that leads to home.html which displays the home page.
-
 */
 
 
 // Dependencies
 var express = require('express');
 var bodyParser = require('body-parser');
-var path = require('path');
+var path = require('path'); 
 
 var app = express();
 var PORT = 3000;
@@ -102,6 +98,7 @@ app.get('/api/friends?', function(req, res) {
 	}
 })
 
+/*
 app.post('/api/new', function(req, res){
 
 	var newfriend = req.body;
@@ -113,6 +110,7 @@ app.post('/api/new', function(req, res){
 	res.json(newfriend);
 })
 
+*/
 
 app.listen(PORT, function(){
 	console.log('App listening on PORT ' + PORT);
