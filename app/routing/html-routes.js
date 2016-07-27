@@ -74,6 +74,10 @@ app.get('/survey', function(req, res){
 	res.sendFile(path.join(__dirname, '../public/survey.html'));
 })
 
+app.use('/', function(req, res){
+	res.sendFile(path.join(__dirname, '../public/home.html'));
+})
+
 
 app.get('/api/friends?', function(req, res) {
 
@@ -98,7 +102,7 @@ app.get('/api/friends?', function(req, res) {
 	}
 })
 
-/*
+
 app.post('/api/new', function(req, res){
 
 	var newfriend = req.body;
@@ -110,7 +114,7 @@ app.post('/api/new', function(req, res){
 	res.json(newfriend);
 })
 
-*/
+
 
 app.listen(PORT, function(){
 	console.log('App listening on PORT ' + PORT);
