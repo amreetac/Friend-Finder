@@ -1,93 +1,26 @@
+// Link our routes to our data sources
 
-/*
-
-Your html-routes.js file should include two routes:
-
-A GET Route to /survey which should display the survey page.
-A default USE route that leads to home.html which displays the home page.
-
-*/
-
-
-// Dependencies
-var express = require('express');
-var bodyParser = require('body-parser');
+var friendData = require('../data/friends.js');
 var path = require('path');
 
-var app = express();
-var PORT = 3000;
+module.exports = function(app) {
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.text());
-app.use(bodyParser.json({type:'application/vnd.api+json'}));
+	// API GET Requests
+	// Below code handles when users "visit" a page.
+	// In each of the below cases when a user visits a link
+	// (ex. localhost:PORT/api/admin) They are shown a JSON of the data in the table
 
-
-
-// Data
-var friends = [
-
-	{
-		name: "Amreeta C. ",
-		photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgSAAAAJDRlOTMzYjljLTNjMWYtNGViZi1hZTg0LTVlN2RkMDRkNmE0OQ.jpg",
-		scores: [1 , 2, 3, 4, 5, 1, 2, 3, 4, 5]	
-	},
-
-	{
-		name: "Nicole O.",
-		photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/1/005/079/1d2/2e35bb7.jpg",
-		scores: [1, 4, 3, 5, 2, 1, 2, 3, 4, 5]	
-	},
-
-	{
-		name: "Stef C.",
-		photo: "http://www.publicdomainpictures.net/pictures/70000/velka/soccer-ball-1390575053DHe.jpg",
-		scores: [1, 2, 3, 2, 1, 3, 1, 2, 4, 5]	
-	},
-
-	{
-		name: "Indrajit C.",
-		photo: "https://media.licdn.com/media/AAEAAQAAAAAAAAjYAAAAJGMwNTI4MzJjLThhOTktNGIzYy1iNDFjLWNmNWJiMTcxMTk4OA.jpg",
-		scores: [2, 1, 3, 5, 2, 1, 1, 2, 4, 5]	
-	},
+	app.get('/api/friends', function(req, res){
+		res.json(friendData.friends);  //from friends.js file and friends is name of the list of friends
+	});
 
 
-	{
-		name: "Fry.",
-		photo: "http://www.publicdomainpictures.net/pictures/10000/velka/food-331287862953TkE2.jpg",
-		scores: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]	
-	},
+	app.post('/api/friends', function(req, res){
+		console.log(req.body.name);
+		console.log('req body q1:' + req.body.scores);
+		res.json(friendData.findFriend(req.body.scores));
 
+		//put it in here 
+	});
+}
 
-	{
-		name: "Niki K.",
-		photo: "http://www.publicdomainpictures.net/pictures/120000/velka/double-heart-1426437286BAo.jpg",
-		scores: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]	
-	}
-
-
-]
-
-
-app.get('/api/friends?', function(req, res) {
-
-	var chosen = req.params.friends;
-
-	if(chosen){
-		console.log(chosen);
-
-		for (var i=0; i <friends.length; i++){
-
-			if (chosen == friends[i].routeName){
-				res.json(friends[i]);
-				return;
-			}
-		}
-
-		res.send("No friend found");
-	}
-
-	else{
-		res.json(friends);
-	}
-})
