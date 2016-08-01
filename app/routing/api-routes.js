@@ -17,8 +17,8 @@ module.exports = function(app) {
 
 	app.post('/api/friends', function(req, res){
 		console.log(req.body.name);
-		console.log('req body q1:' + req.body.scores);
-		res.json(friendData.findFriend(req.body.scores));
+		console.log('req body q1:' + req.body);
+		res.json(friendData.findFriend(req.body));
 
 		//put it in here 
 	});

@@ -7,7 +7,7 @@ this.friends = [
 	{
 		name: "Amreeta C. ",
 		photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgSAAAAJDRlOTMzYjljLTNjMWYtNGViZi1hZTg0LTVlN2RkMDRkNmE0OQ.jpg",
-		scores: [1 , 2, 3, 4, 5, 1, 2, 3, 4, 5]	
+		scores: [5 , 2, 3, 4, 5, 1, 2, 3, 4, 5]	
 	},
 
 	{
@@ -18,8 +18,8 @@ this.friends = [
 
 	{
 		name: "Stef C.",
-		photo: "http://www.publicdomainpictures.net/pictures/70000/velka/soccer-ball-1390575053DHe.jpg",
-		scores: [1, 2, 3, 2, 1, 3, 1, 2, 4, 5]	
+		photo: "https://tse2.mm.bing.net/th?id=OIP.Ma83fb175aa2093832f7b055fba404b6bo0&pid=15.1&P=0&w=300&h=300",
+		scores: [2, 2, 3, 4, 5, 1, 2, 3, 4, 5]	
 	},
 
 	{
@@ -31,8 +31,8 @@ this.friends = [
 
 	{
 		name: "Fry.",
-		photo: "http://www.publicdomainpictures.net/pictures/10000/velka/food-331287862953TkE2.jpg",
-		scores: [4, 1, 1, 1, 1, 3, 3, 2, 4, 5]	
+		photo: "http://images3.wikia.nocookie.net/__cb20110916120044/en.futurama/images/f/f2/PhilipJ.Fry.png",
+		scores: [5, 1, 1, 1, 1, 3, 3, 2, 4, 5]	
 	},
 
 
@@ -46,21 +46,23 @@ this.friends = [
 ];
 
 
-this.findFriend = function(Score) {
+this.findFriend = function(newUser) {
+	console.log("0_"+ newUser.scores[0]);
+	console.log("1_" + newUser.scores[1]);
 
 	var friendList = this.friends;
 
 	var diffMin = 100;
 
-	var match = -1;
+	var bestCompat = -1;
 
 	for (var i=0; i<friendList.length; i++) {
 
 		var friendScores = friendList[i].scores;
 		var diff = 0;
 
-		for (var j=0; j<friendList.length; j++) {
-				diff += Math.abs(friendScores[j] - friendScores[i]);
+		for (var j=0; j<friendScores.length; j++) {
+				diff += Math.abs(friendScores[j] - newUser.scores[j]);
 		}
 
 		if (diff < diffMin) {
@@ -68,9 +70,13 @@ this.findFriend = function(Score) {
 				bestCompat = i; // The user with the best compatibility, or smallest difference
 		}
 
+    console.log(i+" "+diff+" "+bestCompat);
+
+  }
+
+		this.friends.push(newUser);
 		return this.friends[bestCompat];
 
-	}
 }
 
 }
