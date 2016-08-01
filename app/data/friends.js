@@ -38,7 +38,7 @@ this.friends = [
 
 	{
 		name: "Niki K.",
-		photo: "http://www.publicdomainpictures.net/pictures/120000/velka/double-heart-1426437286BAo.jpg",
+		photo: "https://tse4.mm.bing.net/th?id=OIP.Mbc916c660f30dc97b09383dfc8a49a1bo0&pid=15.1&P=0&w=300&h=300",
 		scores: [5, 5, 5, 5, 1, 2, 1, 1, 4, 5]	
 	}
 
